@@ -1,58 +1,115 @@
 {
   "name": "yapi-code",
-	"displayName": "yapi code",
-	"description": "mine test plugin",
+  "displayName": "yapi code",
+  "description": "mine test plugin",
   "version": "0.0.1",
   "publisher": "maqiang",
-	"engines": {
-		"vscode": "^1.51.0"
+  "engines": {
+    "vscode": "^1.51.0"
   },
   "license": "UNLICENSED",
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/weiwoq159/YapiCode"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
     "onCommand:yapi-code.helloWorld",
-    "onCommand:yapi-code.insertCode"
-	],
-	"main": "./dist/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "yapi-code.helloWorld",
-				"title": "Hello World"
+    "onCommand:yapi-code.insertCode",
+    "onCommand:yapi-code.linkYapi"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "yapi-list",
+          "icon": "assets/link.svg",
+          "title": "Yapi"
+        }
+      ]
+    },
+    "views": {
+      "yapi-list": [
+        {
+          "id": "yapi-list",
+          "name": "api"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "yapi-code.linkYapi",
+        "title": "Link Yapi",
+        "category": "Yapi Code"
       },
       {
-				"command": "yapi-code.insertCode",
-				"title": "Insert Code"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "yarn run package",
-		"compile": "webpack --devtool nosources-source-map --config ./build/node-extension.webpack.config.js",
-		"watch": "webpack --watch --devtool nosources-source-map --info-verbosity verbose --config ./build/node-extension.webpack.config.js",
-		"package": "webpack --mode production --config ./build/node-extension.webpack.config.js",
-		"test-compile": "tsc -p ./",
-		"test-watch": "tsc -watch -p ./",
-		"pretest": "yarn run test-compile && yarn run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/vscode": "^1.51.0",
-		"@types/glob": "^7.1.3",
-		"@types/mocha": "^8.0.0",
-		"@types/node": "^12.11.7",
-		"eslint": "^7.9.0",
-		"@typescript-eslint/eslint-plugin": "^4.1.1",
-		"@typescript-eslint/parser": "^4.1.1",
-		"glob": "^7.1.6",
-		"mocha": "^8.1.3",
-		"typescript": "^4.0.2",
-		"vscode-test": "^1.4.0",
-		"ts-loader": "^8.0.3",
-		"webpack": "^4.44.1",
-		"webpack-cli": "^3.3.12"
-	}
+        "command": "yapi-code.helloWorld",
+        "title": "Hello World",
+        "category": "Yapi Code"
+      },
+      {
+        "command": "yapi-code.insertCode",
+        "title": "Insert Code",
+        "category": "Yapi Code"
+      }
+    ],
+    "configuration": {
+      "title": "Yapi Code",
+      "properties": {
+        "yapi-code.email": {
+          "default": "",
+          "markdownDescription": "登录用户名",
+          "type": "string"
+        },
+        "yapi-code.password": {
+          "default": "",
+          "markdownDescription": "登录密码",
+          "type": "string"
+        },
+        "yapi-code.url": {
+          "default": "",
+          "markdownDescription": "Yapi项目地址",
+          "type": "string"
+        },
+        "yapi-code.Pid": {
+          "default": "",
+          "markdownDescription": "Yapi项目ID",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run package",
+    "compile": "webpack --devtool nosources-source-map --config ./build/node-extension.webpack.config.js",
+    "watch": "webpack --watch --devtool nosources-source-map --info-verbosity verbose --config ./build/node-extension.webpack.config.js",
+    "package": "webpack --mode production --config ./build/node-extension.webpack.config.js",
+    "test-compile": "tsc -p ./",
+    "test-watch": "tsc -watch -p ./",
+    "pretest": "yarn run test-compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.0.0",
+    "@types/node": "^12.11.7",
+    "@types/vscode": "^1.51.0",
+    "@typescript-eslint/eslint-plugin": "^4.1.1",
+    "@typescript-eslint/parser": "^4.1.1",
+    "eslint": "^7.9.0",
+    "glob": "^7.1.6",
+    "got": "^11.8.0",
+    "json-schema": "^0.2.5",
+    "lodash": "^4.17.20",
+    "mocha": "^8.1.3",
+    "ts-loader": "^8.0.3",
+    "typescript": "^4.0.2",
+    "vscode-test": "^1.4.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
 }
